@@ -1,29 +1,58 @@
 import { Link } from "@tanstack/react-router";
-import { site } from "@/content/site";
+import { disciplines, nav, site } from "@/content/site";
 import { Wordmark } from "./Logo";
 
 export function Footer() {
   return (
-    <footer className="bg-indigo text-ink border-t border-ink/15">
-      <div className="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-        <div className="flex items-center gap-3">
-          <Wordmark className="text-[15px]" />
-          <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-ink/40">
-            {site.city}
-          </span>
+    <footer className="border-t border-ink/15 bg-indigo text-ink">
+      <div className="mx-auto max-w-7xl px-6 pb-8 pt-20">
+        <div className="grid gap-12 py-12 sm:grid-cols-2 lg:grid-cols-4">
+          <div>
+            <Wordmark className="text-xl" />
+            <p className="mt-4 max-w-xs text-[14px] leading-relaxed text-ink/55">
+              A student-led science collective at {site.school}, {site.city}.
+            </p>
+          </div>
+          <div>
+            <h3 className="text-[11px] uppercase tracking-[0.18em] text-ink/40">Explore</h3>
+            <nav className="mt-4 flex flex-col gap-3 text-[14px] text-ink/70">
+              {nav.slice(0, 5).map((item) => (
+                <Link key={item.to} to={item.to} className="transition-colors hover:text-cyan">
+                  {item.label}
+                </Link>
+              ))}
+            </nav>
+          </div>
+          <div>
+            <h3 className="text-[11px] uppercase tracking-[0.18em] text-ink/40">Disciplines</h3>
+            <nav className="mt-4 flex flex-col gap-3 text-[14px] text-ink/70">
+              {disciplines.map((discipline) => (
+                <Link key={discipline.name} to="/science" className="transition-colors hover:text-cyan">
+                  {discipline.name}
+                </Link>
+              ))}
+            </nav>
+          </div>
+          <div>
+            <h3 className="text-[11px] uppercase tracking-[0.18em] text-ink/40">Connect</h3>
+            <div className="mt-4 flex flex-col gap-3 text-[14px] text-ink/70">
+              <a href={`mailto:${site.email}`} className="transition-colors hover:text-cyan">
+                {site.email}
+              </a>
+              {site.social.map((social) => (
+                <a key={social.label} href={social.href} className="transition-colors hover:text-cyan">
+                  {social.label}
+                </a>
+              ))}
+              <Link to="/join" className="transition-colors hover:text-cyan">
+                Join NovaLab
+              </Link>
+            </div>
+          </div>
         </div>
-        <div className="flex flex-wrap items-center gap-6 text-[13px] text-ink/60">
-          {site.social.map((s) => (
-            <a key={s.label} href={s.href} className="hover:text-ink transition-colors">
-              {s.label}
-            </a>
-          ))}
-          <Link to="/contact" className="hover:text-ink transition-colors">
-            Contact
-          </Link>
-          <Link to="/join" className="hover:text-ink transition-colors">
-            Join
-          </Link>
+        <div className="flex flex-col justify-between gap-3 border-t border-ink/15 pt-5 text-[11px] uppercase tracking-[0.15em] text-ink/35 sm:flex-row">
+          <span>© NovaLab · {site.city}</span>
+          <span>Curiosity is a practice.</span>
         </div>
       </div>
     </footer>

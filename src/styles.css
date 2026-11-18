@@ -117,6 +117,9 @@
 
   body {
     background-color: var(--color-background);
+    background-image:
+      radial-gradient(circle at 82% 4%, color-mix(in srgb, var(--cyan) 7%, transparent), transparent 28rem),
+      linear-gradient(to bottom, transparent 0, color-mix(in srgb, var(--midnight) 18%, transparent) 100%);
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;

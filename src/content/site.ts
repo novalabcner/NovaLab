@@ -4,7 +4,7 @@ import pigments from "@/assets/project-pigments.jpg";
 
 export const site = {
   name: "NovaLab",
-  tagline: "Where new ideas meet the real world.",
+  tagline: "Science without boundaries.",
   school: 'Colegiul Național „Emil Racoviță”',
   city: "Iași, Romania",
   email: "contact@novalab.ro",
@@ -16,9 +16,10 @@ export const site = {
 
 export const nav = [
   { label: "About", to: "/about" },
-  { label: "Science", to: "/science" },
+  { label: "Disciplines", to: "/science" },
   { label: "Projects", to: "/projects" },
-  { label: "Team", to: "/team" },
+  { label: "Events", to: "/events" },
+  { label: "Articles", to: "/articles" },
   { label: "Contact", to: "/contact" },
 ] as const;
 
@@ -33,11 +34,11 @@ export const disciplines: {
 }[] = [
   {
     index: "01",
-    name: "Physics",
-    note: "motion & forces",
-    accent: "cyan",
+    name: "Biology",
+    note: "life & systems",
+    accent: "amber",
     blurb:
-      "From optics on a classroom bench to the mechanics behind everyday objects — measuring what we can, modelling what we can't.",
+      "Living systems read as systems — from pigments in a leaf to the logic of an ecosystem.",
   },
   {
     index: "02",
@@ -49,15 +50,7 @@ export const disciplines: {
   },
   {
     index: "03",
-    name: "Biology",
-    note: "life & systems",
-    accent: "amber",
-    blurb:
-      "Living systems read as systems — from pigments in a leaf to the logic of an ecosystem.",
-  },
-  {
-    index: "04",
-    name: "Astronomy",
+    name: "Astrophysics",
     note: "light & distance",
     accent: "cyan",
     blurb:
@@ -133,7 +126,7 @@ export const projects: Project[] = [
     title: "Spectral reading of a small light source",
     description:
       "A hands-on study of visible light, building a simple spectroscope from classroom optics.",
-    discipline: "Physics",
+    discipline: "Astrophysics",
     accent: "cyan",
     status: "In progress",
     date: "Sample entry",
@@ -145,7 +138,7 @@ export const projects: Project[] = [
     title: "Mapping the winter sky over Iași",
     description:
       "Charting constellations and celestial coordinates across a semester of night observations.",
-    discipline: "Astronomy",
+    discipline: "Astrophysics",
     accent: "violet",
     status: "Planning",
     date: "Sample entry",
@@ -184,3 +177,30 @@ export const departments = [
 export const partners: { name: string; role: string }[] = [
   // Intentionally empty until real partnerships exist.
 ];
+
+export type EventRecord = {
+  slug: string;
+  title: string;
+  description: string;
+  date?: string;
+  location?: string;
+  discipline?: string;
+  image?: string;
+  featured?: boolean;
+  registrationHref?: string;
+};
+
+export const events: EventRecord[] = [];
+
+export type ArticleRecord = {
+  slug: string;
+  title: string;
+  excerpt: string;
+  category: string;
+  date?: string;
+  author?: string;
+  readingTime?: string;
+  image?: string;
+};
+
+export const articles: ArticleRecord[] = [];

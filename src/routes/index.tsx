@@ -32,18 +32,15 @@ const disciplineColors = {
 } as const;
 
 const disciplineMarks = {
-  Physics: "bg-cyan",
   Chemistry: "bg-violet",
   Biology: "bg-biology",
-  Astronomy: "bg-electric",
+  Astrophysics: "bg-electric",
 } as const;
 
 function Index() {
   return (
     <>
       <section className="relative overflow-hidden border-b border-ink/10 bg-paper">
-        <div className="pointer-events-none absolute -right-20 top-0 h-[34rem] w-[34rem] rounded-full border border-cyan/10" />
-        <div className="pointer-events-none absolute right-8 top-16 h-[28rem] w-[28rem] rounded-full border border-dashed border-ink/10" />
         <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 pb-20 pt-16 md:pb-28 md:pt-24 lg:grid-cols-12">
           <div className="relative z-10 lg:col-span-8">
             <div className="mb-9 flex items-center gap-3 text-[11px] uppercase tracking-[0.24em] text-ink/50">
@@ -68,17 +65,11 @@ function Index() {
                 >
                   Explore the lab <span aria-hidden="true">↗</span>
                 </Link>
-                <Link
-                  to="/projects"
-                  className="border border-ink/20 px-5 py-3 text-[13px] font-medium text-ink/75 transition-colors hover:border-cyan hover:text-ink"
-                >
-                  Project log
-                </Link>
               </div>
             </div>
           </div>
           <div className="relative z-10 lg:col-span-4 lg:pt-16">
-            <OrbitDiagram label="Fig. 01" caption="science without boundaries" />
+            <OrbitDiagram caption="NovaLab" />
           </div>
         </div>
         <div className="mx-auto flex max-w-7xl items-center justify-between border-t border-ink/10 px-6 py-4 text-[10px] uppercase tracking-[0.2em] text-ink/40">
@@ -103,7 +94,7 @@ function Index() {
             </p>
             <div className="mt-12 grid grid-cols-3 border-t border-ink/15 pt-5">
               <div>
-                <span className="block text-3xl font-medium text-cyan">04</span>
+                <span className="block text-3xl font-medium text-cyan">03</span>
                 <span className="mt-2 block text-[11px] uppercase tracking-[0.12em] text-ink/45">
                   Core disciplines
                 </span>
@@ -130,7 +121,7 @@ function Index() {
           <div className="mb-10 flex items-end justify-between border-b border-ink/15 pb-6">
             <SectionHeader eyebrow="03 — The disciplines" title={<>Science is connected<span className="text-cyan">.</span></>} />
             <span className="hidden text-[11px] uppercase tracking-[0.18em] text-ink/40 md:block">
-              Four ways in · no walls out
+              Three ways in · no walls out
             </span>
           </div>
           <div className="divide-y divide-ink/10">
@@ -224,9 +215,9 @@ function Index() {
         </div>
       </section>
 
-      <section className="bg-indigo text-ink">
+      <section className="bg-paper text-ink">
         <div className="mx-auto max-w-7xl px-6 py-24 md:py-32">
-          <Eyebrow tone="paper">07 — Come build with us</Eyebrow>
+          <Eyebrow>07 — Come build with us</Eyebrow>
           <h2 className="mt-7 max-w-4xl text-5xl font-medium leading-[0.98] tracking-[-0.06em] md:text-8xl">
             Science
             <br />

@@ -23,7 +23,7 @@ export const Route = createFileRoute("/projects")({
   component: Projects,
 });
 
-const filters = ["All", "Physics", "Chemistry", "Biology", "Astronomy"] as const;
+const filters = ["All", "Biology", "Chemistry", "Astrophysics"] as const;
 
 function Projects() {
   const [filter, setFilter] = useState<string>("All");

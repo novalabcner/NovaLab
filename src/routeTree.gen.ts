@@ -16,6 +16,8 @@ import { Route as JoinRouteImport } from './routes/join'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as ScienceRouteImport } from './routes/science'
 import { Route as TeamRouteImport } from './routes/team'
+import { Route as ArticlesRouteImport } from './routes/articles'
+import { Route as EventsRouteImport } from './routes/events'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -52,6 +54,16 @@ const TeamRoute = TeamRouteImport.update({
   path: '/team',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ArticlesRoute = ArticlesRouteImport.update({
+  id: '/articles',
+  path: '/articles',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EventsRoute = EventsRouteImport.update({
+  id: '/events',
+  path: '/events',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -61,6 +73,8 @@ export interface FileRoutesByFullPath {
   '/projects': typeof ProjectsRoute
   '/science': typeof ScienceRoute
   '/team': typeof TeamRoute
+  '/articles': typeof ArticlesRoute
+  '/events': typeof EventsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -70,6 +84,8 @@ export interface FileRoutesByTo {
   '/projects': typeof ProjectsRoute
   '/science': typeof ScienceRoute
   '/team': typeof TeamRoute
+  '/articles': typeof ArticlesRoute
+  '/events': typeof EventsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -80,13 +96,15 @@ export interface FileRoutesById {
   '/projects': typeof ProjectsRoute
   '/science': typeof ScienceRoute
   '/team': typeof TeamRoute
+  '/articles': typeof ArticlesRoute
+  '/events': typeof EventsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/about' | '/contact' | '/join' | '/projects' | '/science' | '/team'
+    '/' | '/about' | '/contact' | '/join' | '/projects' | '/science' | '/team' | '/articles' | '/events'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/contact' | '/join' | '/projects' | '/science' | '/team'
+  to: '/' | '/about' | '/contact' | '/join' | '/projects' | '/science' | '/team' | '/articles' | '/events'
   id:
     | '__root__'
     | '/'
@@ -96,6 +114,8 @@ export interface FileRouteTypes {
     | '/projects'
     | '/science'
     | '/team'
+    | '/articles'
+    | '/events'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -106,6 +126,8 @@ export interface RootRouteChildren {
   ProjectsRoute: typeof ProjectsRoute
   ScienceRoute: typeof ScienceRoute
   TeamRoute: typeof TeamRoute
+  ArticlesRoute: typeof ArticlesRoute
+  EventsRoute: typeof EventsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -159,6 +181,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TeamRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/articles': {
+      id: '/articles'
+      path: '/articles'
+      fullPath: '/articles'
+      preLoaderRoute: typeof ArticlesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/events': {
+      id: '/events'
+      path: '/events'
+      fullPath: '/events'
+      preLoaderRoute: typeof EventsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -170,6 +206,8 @@ const rootRouteChildren: RootRouteChildren = {
   ProjectsRoute: ProjectsRoute,
   ScienceRoute: ScienceRoute,
   TeamRoute: TeamRoute,
+  ArticlesRoute: ArticlesRoute,
+  EventsRoute: EventsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -22,7 +22,7 @@ const jitter = (seed: number, amount: number) =>
   (Math.sin(seed * 12.9898) * 43758.5453) % 1 * amount;
 
 export function OrbitDiagram({
-  label = "Fig. 01",
+  label,
   caption = "the orbit",
   branches = DEFAULT_BRANCHES,
 }: {
@@ -125,9 +125,11 @@ export function OrbitDiagram({
         {/* centre label */}
         <div className="absolute inset-0 z-10 grid place-items-center">
           <div className="rounded-lg bg-paper/60 px-2 py-1.5 text-center backdrop-blur-sm">
-            <span className="block font-mono text-[8px] uppercase tracking-[0.24em] text-ink/40">
-              {label}
-            </span>
+            {label ? (
+              <span className="block font-mono text-[8px] uppercase tracking-[0.24em] text-ink/40">
+                {label}
+              </span>
+            ) : null}
             <span className="block font-display text-lg italic leading-tight">{caption}</span>
             <span className="mt-0.5 block font-mono text-[8px] uppercase tracking-[0.18em] text-ink/35">
               {total} members · {branches.length} disciplines

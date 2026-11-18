@@ -70,6 +70,24 @@ function About() {
         </div>
       </section>
 
+      <section className="border-b border-ink/10 bg-midnight">
+        <div className="mx-auto grid max-w-7xl gap-10 px-6 py-20 md:py-28 lg:grid-cols-12 lg:items-end">
+          <div className="lg:col-span-8">
+            <Eyebrow tone="paper">Our mission</Eyebrow>
+            <h2 className="mt-6 max-w-4xl text-4xl font-medium leading-[1.05] tracking-[-0.06em] md:text-6xl">
+              Science is not just something we study. It&apos;s something we{" "}
+              <span className="font-editorial font-normal italic text-cyan">explore together.</span>
+            </h2>
+          </div>
+          <Link
+            to="/team"
+            className="inline-flex items-center justify-center bg-cyan px-5 py-3 text-[14px] font-semibold text-paper transition-colors hover:bg-electric lg:justify-self-end"
+          >
+            Meet the community <span aria-hidden="true">↗</span>
+          </Link>
+        </div>
+      </section>
+
       <section className="max-w-7xl mx-auto px-6 py-20 grid lg:grid-cols-12 gap-12">
         <SectionHeader className="lg:col-span-4" eyebrow="How it works" title="What a term looks like." />
         <ul className="lg:col-span-8 grid sm:grid-cols-2 gap-x-10 gap-y-8">

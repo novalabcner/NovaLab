@@ -9,7 +9,7 @@ export const Route = createFileRoute("/science")({
       {
         name: "description",
         content:
-          "Physics, chemistry, biology and astronomy at NovaLab — plus the mathematics, engineering and computing that connect them.",
+          "Biology, chemistry and astrophysics at NovaLab — plus the mathematics, engineering and computing that connect them.",
       },
       { property: "og:title", content: "Science at NovaLab" },
       {
@@ -33,7 +33,7 @@ function Science() {
       <section className="max-w-7xl mx-auto px-6 pt-16 pb-12 md:pt-24">
         <Eyebrow>Science</Eyebrow>
         <h1 className="mt-6 max-w-3xl font-display text-5xl md:text-7xl font-medium leading-[0.95] tracking-tight">
-          Four starting points, <span className="italic text-cyan">one</span> field.
+          Three starting points, <span className="italic text-cyan">one</span> field.
         </h1>
         <p className="mt-8 max-w-xl text-[17px] leading-relaxed text-ink/65">
           We don't sort members into departments by subject. A question that starts in physics

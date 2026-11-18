@@ -64,7 +64,7 @@ function Contact() {
       <section className="bg-indigo text-ink">
         <div className="max-w-7xl mx-auto px-6 py-20 grid lg:grid-cols-12 gap-12">
           <div className="lg:col-span-5">
-            <Eyebrow tone="paper">Support & collaboration</Eyebrow>
+            <Eyebrow>Support & collaboration</Eyebrow>
             <h2 className="mt-6 font-display text-4xl font-medium leading-tight">
               Partners we haven't met yet.
             </h2>
