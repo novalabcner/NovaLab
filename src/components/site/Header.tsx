@@ -42,12 +42,6 @@ export function Header() {
 
         <div className="flex items-center gap-3">
           <LanguageSwitcher />
-          <Link
-            to="/join"
-            className="bg-nova text-ink text-[13px] font-medium px-4 py-2 rounded-full hover:bg-electric transition-colors"
-          >
-            {t("nav.join")}
-          </Link>
           <button
             type="button"
             className="md:hidden font-mono text-[11px] uppercase tracking-[0.18em] text-ink/60"
