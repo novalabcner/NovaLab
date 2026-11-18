@@ -1,6 +1,6 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { Eyebrow } from "@/components/site/SectionHeader";
-import { departments } from "@/content/site";
+import { departments, teamMembers } from "@/content/site";
 import community from "@/assets/community-bench.jpg";
 import { useTranslation } from "react-i18next";
 import { contentText } from "@/content/translate";
@@ -66,27 +66,31 @@ function Team() {
       </section>
 
       <section className="max-w-7xl mx-auto px-6 py-20 grid lg:grid-cols-12 gap-12">
-        <div className="lg:col-span-5">
+        <div className="lg:col-span-4">
           <Eyebrow>{t("team.members")}</Eyebrow>
           <h2 className="mt-4 font-display text-4xl font-medium tracking-tight">
-            The list is being written.
+            {t("team.title")}
           </h2>
         </div>
-        <div className="lg:col-span-6 lg:col-start-7">
-          <div className="rounded-xl border border-dashed border-ink/20 p-8">
-            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink/40">
-              {t("team.pending")}
-            </p>
-            <p className="mt-4 text-[16px] leading-relaxed text-ink/65">
-              {t("team.pendingText")}
-            </p>
-            <Link
-              to="/join"
-              className="mt-6 inline-block text-[14px] font-medium text-ink/70 hover:text-ink transition-colors"
-            >
-              {t("team.want")}
-            </Link>
-          </div>
+        <div className="lg:col-span-8 grid sm:grid-cols-2 xl:grid-cols-3 gap-x-6 gap-y-10">
+          {teamMembers.map((member) => (
+            <article key={member.name}>
+              <img
+                src={member.image}
+                alt={member.name}
+                loading="lazy"
+                width={828}
+                height={1040}
+                className="w-full aspect-[4/5] object-cover rounded-xl outline-1 -outline-offset-1 outline-ink/10"
+              />
+              <h3 className="mt-4 font-display text-xl font-medium tracking-tight">
+                {member.name}
+              </h3>
+              <p className="mt-2 text-[14px] leading-relaxed text-cyan">
+                {t(`team.roles.${member.role}`)}
+              </p>
+            </article>
+          ))}
         </div>
       </section>
     </>

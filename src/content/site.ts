@@ -1,6 +1,14 @@
 import spectral from "@/assets/project-spectral.jpg";
 import skymap from "@/assets/project-skymap.jpg";
 import pigments from "@/assets/project-pigments.jpg";
+import alexa from "@/assets/board/Alexa.JPEG";
+import budis from "@/assets/board/Budis.JPEG";
+import garbea from "@/assets/board/Garbea.JPEG";
+import gheorghidiu from "@/assets/board/Gheorghidiu.JPEG";
+import gliga from "@/assets/board/Gliga.JPEG";
+import lacatus from "@/assets/board/Lacatus.JPEG";
+import tololoi from "@/assets/board/Tololoi.JPEG";
+import zagan from "@/assets/board/Zagan.JPEG";
 
 export const site = {
   name: "NovaLab",
@@ -171,6 +179,51 @@ export const departments = [
   {
     name: "Events",
     text: "Plans the sessions, the equipment and the logistics that make a meeting possible.",
+  },
+];
+
+export type TeamMember = {
+  name: string;
+  role:
+    | "president"
+    | "vicePresident"
+    | "astrophysicsCoordinator"
+    | "chemistryCoordinator"
+    | "biologyCoordinatorSecretary"
+    | "secretary"
+    | "fundraisingDesignCoordinator"
+    | "photographyCoordinator";
+  image: string;
+};
+
+export const teamMembers: TeamMember[] = [
+  { name: "Lăcătuș Cosmin", role: "president", image: lacatus },
+  { name: "Gârbea Răzvan", role: "vicePresident", image: garbea },
+  {
+    name: "Zagan Sofia",
+    role: "astrophysicsCoordinator",
+    image: zagan,
+  },
+  {
+    name: "Alexa Iasmina",
+    role: "chemistryCoordinator",
+    image: alexa,
+  },
+  {
+    name: "Tololoi Daria",
+    role: "biologyCoordinatorSecretary",
+    image: tololoi,
+  },
+  { name: "Gliga Cleopatra", role: "secretary", image: gliga },
+  {
+    name: "Budiș Daria",
+    role: "fundraisingDesignCoordinator",
+    image: budis,
+  },
+  {
+    name: "Gheorghidiu Ines",
+    role: "photographyCoordinator",
+    image: gheorghidiu,
   },
 ];
 
