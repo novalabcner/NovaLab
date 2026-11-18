@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { OrbitDiagram } from "@/components/site/OrbitDiagram";
-import { SectionHeader, Eyebrow } from "@/components/site/SectionHeader";
+import { Eyebrow, SectionHeader } from "@/components/site/SectionHeader";
 import { ProjectCard } from "@/components/site/ProjectCard";
 import { activities, disciplines, openFields, projects, site } from "@/content/site";
 import community from "@/assets/community-bench.jpg";
@@ -8,13 +8,13 @@ import community from "@/assets/community-bench.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "NovaLab — Science beyond the classroom, Iași" },
+      { title: "NovaLab — Science without boundaries" },
       {
         name: "description",
         content:
           "A student-led science club at Colegiul Național „Emil Racoviță” in Iași: experimenting, debating and building across every branch of science.",
       },
-      { property: "og:title", content: "NovaLab — Science beyond the classroom" },
+      { property: "og:title", content: "NovaLab — Science without boundaries" },
       {
         property: "og:description",
         content:
@@ -25,83 +25,98 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const accentHover = {
+const disciplineColors = {
   cyan: "group-hover:text-cyan",
   violet: "group-hover:text-violet",
-  amber: "group-hover:text-electric",
+  amber: "group-hover:text-biology",
+} as const;
+
+const disciplineMarks = {
+  Physics: "bg-cyan",
+  Chemistry: "bg-violet",
+  Biology: "bg-biology",
+  Astronomy: "bg-electric",
 } as const;
 
 function Index() {
   return (
     <>
-      {/* Hero */}
-      <section className="relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 pt-14 pb-20 md:pt-20 md:pb-28 grid lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-7 rise">
-            <div className="flex items-center gap-3 mb-8 font-mono text-[11px] uppercase tracking-[0.25em] text-ink/50">
-              <span className="h-px w-8 bg-cyan" /> A student science collective · Iași
+      <section className="relative overflow-hidden border-b border-ink/10 bg-paper">
+        <div className="pointer-events-none absolute -right-20 top-0 h-[34rem] w-[34rem] rounded-full border border-cyan/10" />
+        <div className="pointer-events-none absolute right-8 top-16 h-[28rem] w-[28rem] rounded-full border border-dashed border-ink/10" />
+        <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 pb-20 pt-16 md:pb-28 md:pt-24 lg:grid-cols-12">
+          <div className="relative z-10 lg:col-span-8">
+            <div className="mb-9 flex items-center gap-3 text-[11px] uppercase tracking-[0.24em] text-ink/50">
+              <span className="h-px w-10 bg-cyan" /> A student science collective · Iași
             </div>
-            <h1 className="font-display text-[13vw] sm:text-[7rem] lg:text-[6.5rem] leading-[0.92] font-medium tracking-tight">
-              Where new ideas
+            <h1 className="max-w-5xl text-[clamp(3.2rem,8vw,8.5rem)] font-medium leading-[0.94] tracking-[-0.06em]">
+              Bring your
               <br />
-              <span className="italic text-cyan">meet</span> the real world.
+              <span className="font-editorial text-[1.14em] font-normal italic tracking-[-0.05em] text-cyan">
+                curiosity.
+              </span>
             </h1>
-            <p className="mt-8 max-w-md text-[16px] leading-relaxed text-ink/65">
-              NovaLab is a student-led science club at {site.school}, Iași. We go beyond the
-              textbook — experimenting, debating and building, across every branch of science.
-            </p>
-            <div className="mt-10 flex flex-wrap items-center gap-4">
-              <Link
-                to="/science"
-                className="bg-nova text-ink px-6 py-3 rounded-full text-[14px] font-semibold hover:bg-electric transition-colors"
-              >
-                Explore the lab
-              </Link>
-              <Link
-                to="/projects"
-                className="text-[14px] font-medium text-ink/70 hover:text-ink transition-colors"
-              >
-                See what we're working on →
-              </Link>
+            <div className="mt-10 grid max-w-2xl gap-8 md:grid-cols-[1fr_auto] md:items-end">
+              <p className="max-w-md text-[16px] leading-relaxed text-ink/65">
+                NovaLab is a student-led science club at {site.school}, Iași. We go beyond the
+                textbook — experimenting, debating and building, across every branch of science.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <Link
+                  to="/science"
+                  className="bg-nova px-5 py-3 text-[13px] font-semibold text-paper transition-colors hover:bg-cyan"
+                >
+                  Explore the lab <span aria-hidden="true">↗</span>
+                </Link>
+                <Link
+                  to="/projects"
+                  className="border border-ink/20 px-5 py-3 text-[13px] font-medium text-ink/75 transition-colors hover:border-cyan hover:text-ink"
+                >
+                  Project log
+                </Link>
+              </div>
             </div>
           </div>
-          <div className="lg:col-span-5 relative">
-            <OrbitDiagram />
+          <div className="relative z-10 lg:col-span-4 lg:pt-16">
+            <OrbitDiagram label="Fig. 01" caption="science without boundaries" />
           </div>
+        </div>
+        <div className="mx-auto flex max-w-7xl items-center justify-between border-t border-ink/10 px-6 py-4 text-[10px] uppercase tracking-[0.2em] text-ink/40">
+          <span>01 / 06 — Begin with a question</span>
+          <span className="hidden sm:inline">47°09′N · 27°35′E</span>
         </div>
       </section>
 
-      {/* What we are */}
-      <section className="bg-indigo text-ink">
-        <div className="max-w-7xl mx-auto px-6 py-20 md:py-28 grid lg:grid-cols-12 gap-12">
+      <section className="bg-midnight text-ink">
+        <div className="mx-auto grid max-w-7xl gap-12 px-6 py-20 md:py-28 lg:grid-cols-12">
           <div className="lg:col-span-5">
-            <Eyebrow tone="paper">01 — What we are</Eyebrow>
-            <h2 className="mt-6 font-display text-4xl md:text-5xl leading-tight font-medium">
+            <Eyebrow tone="paper">02 — The proposition</Eyebrow>
+            <h2 className="mt-7 max-w-xl text-4xl font-medium leading-[1.1] tracking-[-0.05em] md:text-6xl">
               A lab without walls, built by students.
             </h2>
           </div>
-          <div className="lg:col-span-7 space-y-6 text-[17px] leading-relaxed text-ink/70">
-            <p>
-              NovaLab is a place to think in science — not to memorize it. We're a small,
+          <div className="lg:col-span-6 lg:col-start-7">
+            <p className="max-w-lg text-[18px] leading-relaxed text-ink/65">
+              NovaLab is a place to think in science — not to memorize it. We&apos;re a small,
               ambitious group who believe the best way to learn is to question, test and make
               things together.
             </p>
-            <div className="grid sm:grid-cols-3 gap-6 pt-4 border-t border-ink/15">
+            <div className="mt-12 grid grid-cols-3 border-t border-ink/15 pt-5">
               <div>
-                <span className="block font-display text-4xl text-cyan-soft">04</span>
-                <span className="mt-1 block font-mono text-[13px] uppercase tracking-wide text-ink/55">
+                <span className="block text-3xl font-medium text-cyan">04</span>
+                <span className="mt-2 block text-[11px] uppercase tracking-[0.12em] text-ink/45">
                   Core disciplines
                 </span>
               </div>
               <div>
-                <span className="block font-display text-4xl text-violet">+∞</span>
-                <span className="mt-1 block font-mono text-[13px] uppercase tracking-wide text-ink/55">
+                <span className="block text-3xl font-medium text-violet">+∞</span>
+                <span className="mt-2 block text-[11px] uppercase tracking-[0.12em] text-ink/45">
                   Fields we explore
                 </span>
               </div>
               <div>
-                <span className="block font-display text-4xl text-electric">1</span>
-                <span className="mt-1 block font-mono text-[13px] uppercase tracking-wide text-ink/55">
+                <span className="block text-3xl font-medium text-biology">01</span>
+                <span className="mt-2 block text-[11px] uppercase tracking-[0.12em] text-ink/45">
                   Question at a time
                 </span>
               </div>
@@ -110,13 +125,12 @@ function Index() {
         </div>
       </section>
 
-      {/* Disciplines */}
       <section className="border-b border-ink/10">
-        <div className="max-w-7xl mx-auto px-6 py-20 md:py-24">
-          <div className="flex items-end justify-between border-b border-ink/15 pb-6 mb-10">
-            <SectionHeader eyebrow="02 — The disciplines" title="Science is connected." />
-            <span className="hidden md:block font-mono text-[11px] uppercase tracking-[0.2em] text-ink/40">
-              And the fields we haven't named yet
+        <div className="mx-auto max-w-7xl px-6 py-20 md:py-28">
+          <div className="mb-10 flex items-end justify-between border-b border-ink/15 pb-6">
+            <SectionHeader eyebrow="03 — The disciplines" title={<>Science is connected<span className="text-cyan">.</span></>} />
+            <span className="hidden text-[11px] uppercase tracking-[0.18em] text-ink/40 md:block">
+              Four ways in · no walls out
             </span>
           </div>
           <div className="divide-y divide-ink/10">
@@ -124,60 +138,57 @@ function Index() {
               <Link
                 key={d.name}
                 to="/science"
-                className="group flex items-center justify-between gap-6 py-8"
+                className="group flex items-center justify-between gap-5 py-7 transition-colors hover:bg-midnight/40 md:py-9"
               >
-                <div className="flex items-baseline gap-6">
-                  <span className="font-mono text-sm text-ink/40">{d.index}</span>
+                <div className="flex items-center gap-5 md:gap-8">
+                  <span className="text-[11px] tracking-[0.16em] text-ink/35">{d.index}</span>
+                  <span className={`h-2 w-2 rounded-full ${disciplineMarks[d.name as keyof typeof disciplineMarks]}`} />
                   <span
-                    className={`font-display text-4xl md:text-6xl font-medium tracking-tight transition-colors ${accentHover[d.accent]}`}
+                    className={`text-3xl font-medium tracking-[-0.06em] transition-colors md:text-6xl ${disciplineColors[d.accent]}`}
                   >
                     {d.name}
                   </span>
                 </div>
-                <span className="text-[13px] text-ink/40 transition-transform group-hover:translate-x-2">
-                  {d.note} →
+                <span className="hidden text-right text-[13px] text-ink/40 transition-transform group-hover:translate-x-1 sm:block">
+                  {d.note} <span aria-hidden="true">↗</span>
                 </span>
               </Link>
             ))}
           </div>
-          <p className="mt-8 font-mono text-[11px] uppercase tracking-[0.18em] text-ink/40">
+          <p className="mt-8 text-[11px] uppercase tracking-[0.16em] text-ink/40">
             Open to: {openFields.join(" · ")}
           </p>
         </div>
       </section>
 
-      {/* What we do */}
       <section>
-        <div className="max-w-7xl mx-auto px-6 py-20 md:py-24 grid lg:grid-cols-12 gap-12">
+        <div className="mx-auto grid max-w-7xl gap-12 px-6 py-20 md:py-28 lg:grid-cols-12">
           <SectionHeader
             className="lg:col-span-4"
-            eyebrow="03 — What we do"
-            title="A practice, not a syllabus."
+            eyebrow="04 — What we do"
+            title={<>A practice, <span className="font-editorial font-normal italic text-cyan">not</span> a syllabus.</>}
           />
-          <ul className="lg:col-span-8 grid sm:grid-cols-2 gap-x-10 gap-y-8">
+          <ul className="grid gap-x-10 gap-y-10 sm:grid-cols-2 lg:col-span-8">
             {activities.map((a) => (
               <li key={a.title} className="border-t border-ink/15 pt-4">
-                <span className="font-mono text-[11px] text-cyan">{a.index}</span>
-                <h3 className="mt-1 font-display text-2xl font-medium tracking-tight">
-                  {a.title}
-                </h3>
-                <p className="mt-2 text-[15px] leading-relaxed text-ink/60">{a.text}</p>
+                <span className="text-[11px] text-cyan">{a.index}</span>
+                <h3 className="mt-3 text-2xl font-medium tracking-[-0.05em]">{a.title}</h3>
+                <p className="mt-2 max-w-sm text-[15px] leading-relaxed text-ink/60">{a.text}</p>
               </li>
             ))}
           </ul>
         </div>
       </section>
 
-      {/* Projects */}
       <section className="bg-midnight">
-        <div className="max-w-7xl mx-auto px-6 py-20 md:py-24">
-          <div className="mb-10 flex items-end justify-between flex-wrap gap-4">
-            <SectionHeader eyebrow="04 — Project log" title="Work in progress." />
-            <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink/40">
+        <div className="mx-auto max-w-7xl px-6 py-20 md:py-28">
+          <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
+            <SectionHeader eyebrow="05 — Project log" title={<>Work in <span className="font-editorial font-normal italic text-violet">progress.</span></>} />
+            <span className="text-[10px] uppercase tracking-[0.18em] text-ink/40">
               Sample entries — real records replace these
             </span>
           </div>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid gap-6 md:grid-cols-3">
             {projects.map((p) => (
               <ProjectCard key={p.slug} project={p} />
             ))}
@@ -185,9 +196,8 @@ function Index() {
         </div>
       </section>
 
-      {/* Community */}
       <section>
-        <div className="max-w-7xl mx-auto px-6 py-20 md:py-24 grid lg:grid-cols-12 gap-12 items-center">
+        <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 py-20 md:py-28 lg:grid-cols-12">
           <div className="lg:col-span-6">
             <img
               src={community}
@@ -195,43 +205,44 @@ function Index() {
               loading="lazy"
               width={1200}
               height={800}
-              className="w-full aspect-[3/2] object-cover rounded-xl outline-1 -outline-offset-1 outline-ink/10"
+              className="w-full aspect-[3/2] object-cover outline outline-1 -outline-offset-1 outline-ink/10"
             />
           </div>
           <div className="lg:col-span-5 lg:col-start-8">
-            <SectionHeader eyebrow="05 — Community" title="Small by design, serious by choice." />
+            <SectionHeader eyebrow="06 — Community" title={<>Small by design, serious by choice<span className="text-biology">.</span></>} />
             <p className="mt-6 text-[17px] leading-relaxed text-ink/65">
               NovaLab is a young group of students and teachers who show up to think out loud.
-              We'd rather stay honest about our size than pretend to be bigger than we are.
+              We&apos;d rather stay honest about our size than pretend to be bigger than we are.
             </p>
             <Link
               to="/team"
-              className="mt-8 inline-block text-[14px] font-medium text-ink/70 hover:text-ink transition-colors"
+              className="mt-8 inline-block border-b border-cyan pb-1 text-[14px] font-medium text-ink/75 transition-colors hover:text-cyan"
             >
-              Meet the people →
+              Meet the people <span aria-hidden="true">↗</span>
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Join */}
       <section className="bg-indigo text-ink">
-        <div className="max-w-7xl mx-auto px-6 py-24 md:py-32 text-center">
-          <Eyebrow tone="paper">06 — Come build with us</Eyebrow>
-          <h2 className="mt-6 font-display text-5xl md:text-7xl font-medium leading-[0.95] tracking-tight">
-            Bring your
+        <div className="mx-auto max-w-7xl px-6 py-24 md:py-32">
+          <Eyebrow tone="paper">07 — Come build with us</Eyebrow>
+          <h2 className="mt-7 max-w-4xl text-5xl font-medium leading-[0.98] tracking-[-0.06em] md:text-8xl">
+            Science
             <br />
-            <span className="italic text-cyan">curiosity.</span>
+            <span className="font-editorial font-normal italic text-cyan">without boundaries.</span>
           </h2>
-          <p className="mt-6 max-w-md mx-auto text-[16px] leading-relaxed text-ink/65">
-            No perfect grades required — just a genuine love of asking why.
-          </p>
-          <Link
-            to="/join"
-            className="mt-10 inline-block bg-nova text-ink px-8 py-4 rounded-full text-[15px] font-semibold hover:bg-electric transition-colors"
-          >
-            Apply to join NovaLab
-          </Link>
+          <div className="mt-10 flex flex-wrap items-end justify-between gap-8">
+            <p className="max-w-md text-[16px] leading-relaxed text-ink/60">
+              No perfect grades required — just a genuine love of asking why.
+            </p>
+            <Link
+              to="/join"
+              className="bg-nova px-7 py-4 text-[14px] font-semibold text-paper transition-colors hover:bg-cyan"
+            >
+              Apply to join NovaLab <span aria-hidden="true">↗</span>
+            </Link>
+          </div>
         </div>
       </section>
     </>

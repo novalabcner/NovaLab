@@ -3,19 +3,19 @@ import type { Project } from "@/content/site";
 const accentText = {
   cyan: "text-cyan",
   violet: "text-violet",
-  amber: "text-electric",
+  amber: "text-biology",
 } as const;
 
 export function ProjectCard({ project }: { project: Project }) {
   return (
-    <article className="bg-midnight outline-1 -outline-offset-1 outline-ink/10 rounded-xl overflow-hidden flex flex-col">
+    <article className="group flex flex-col overflow-hidden border border-ink/10 bg-midnight transition-colors hover:border-ink/25">
       <img
         src={project.image}
         alt={`${project.discipline} project: ${project.title}`}
         loading="lazy"
         width={1024}
         height={768}
-        className="w-full aspect-[4/3] object-cover"
+        className="aspect-[4/3] w-full object-cover grayscale-[20%] transition duration-500 group-hover:scale-[1.02] group-hover:grayscale-0"
       />
       <div className="p-6 flex flex-col flex-1">
         <div className="flex items-center justify-between">

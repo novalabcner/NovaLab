@@ -23,7 +23,7 @@ export function LogoMark({ className = "" }: { className?: string }) {
 
 export function Wordmark({ className = "" }: { className?: string }) {
   return (
-    <span className={`font-bold tracking-tight leading-none ${className}`}>
+    <span className={`font-display text-[0.8em] font-semibold tracking-[-0.08em] leading-none ${className}`}>
       NOVA<span className="text-cyan">LAB</span>
     </span>
   );

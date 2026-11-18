@@ -24,7 +24,7 @@ export const Route = createFileRoute("/science")({
 const accentText = {
   cyan: "text-cyan",
   violet: "text-violet",
-  amber: "text-electric",
+  amber: "text-biology",
 } as const;
 
 function Science() {
