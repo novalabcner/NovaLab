@@ -1,4 +1,5 @@
 const TICKS = Array.from({ length: 48 }, (_, i) => i);
+import { useTranslation } from "react-i18next";
 
 type Branch = { label: string; code: string; count: number; angle: number };
 
@@ -30,6 +31,12 @@ export function OrbitDiagram({
   caption?: string;
   branches?: Branch[];
 }) {
+  const { t } = useTranslation();
+  const translatedBranches = branches.map((branch) => ({
+    ...branch,
+    label: branch.label === "Biology" ? t("content.biology") : branch.label === "Chemistry" ? t("content.chemistry") : branch.label === "Astrophysics" ? t("content.astrophysics") : branch.label,
+  }));
+  branches = translatedBranches;
   const total = branches.reduce((s, b) => s + b.count, 0);
 
   const clusters = branches.map((b, bi) => {
@@ -132,7 +139,7 @@ export function OrbitDiagram({
             ) : null}
             <span className="block font-display text-lg italic leading-tight">{caption}</span>
             <span className="mt-0.5 block font-mono text-[8px] uppercase tracking-[0.18em] text-ink/35">
-              {total} members · {branches.length} disciplines
+              {total} · {branches.length} {t("footer.disciplines").toLowerCase()}
             </span>
           </div>
         </div>
@@ -141,16 +148,16 @@ export function OrbitDiagram({
       {/* legend */}
       <dl className="mt-4 grid grid-cols-3 gap-3 border-t border-ink/10 pt-4 font-mono text-[9px] uppercase tracking-[0.16em] text-ink/45">
         <div>
-          <dt className="text-ink/70">Dots</dt>
-          <dd>one per member</dd>
+          <dt className="text-ink/70">{t("orbit.dots")}</dt>
+          <dd>{t("orbit.onePerMember")}</dd>
         </div>
         <div>
-          <dt className="text-ink/70">Lines</dt>
-          <dd>member ↔ discipline</dd>
+          <dt className="text-ink/70">{t("orbit.lines")}</dt>
+          <dd>{t("orbit.memberDiscipline")}</dd>
         </div>
         <div>
-          <dt className="text-ink/70">Cyan</dt>
-          <dd>discipline node</dd>
+          <dt className="text-ink/70">{t("orbit.cyan")}</dt>
+          <dd>{t("orbit.disciplineNode")}</dd>
         </div>
       </dl>
     </div>

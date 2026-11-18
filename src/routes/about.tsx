@@ -2,11 +2,14 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SectionHeader, Eyebrow } from "@/components/site/SectionHeader";
 import { OrbitDiagram } from "@/components/site/OrbitDiagram";
 import { activities, site } from "@/content/site";
+import { useTranslation } from "react-i18next";
+import { contentText } from "@/content/translate";
+import { i18n } from "@/i18n";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About NovaLab — A student science collective in Iași" },
+      { title: `${i18n.t("about.eyebrow")} NovaLab — ${i18n.language === "ro" ? "O comunitate științifică a elevilor din Iași" : "A student science collective in Iași"}` },
       {
         name: "description",
         content:
@@ -23,18 +26,17 @@ export const Route = createFileRoute("/about")({
 });
 
 function About() {
+  const { t } = useTranslation();
   return (
     <>
       <section className="max-w-7xl mx-auto px-6 pt-16 pb-16 md:pt-24 grid lg:grid-cols-12 gap-12 items-center">
         <div className="lg:col-span-7">
-          <Eyebrow>About</Eyebrow>
+          <Eyebrow>{t("about.eyebrow")}</Eyebrow>
           <h1 className="mt-6 font-display text-5xl md:text-7xl font-medium leading-[0.95] tracking-tight">
-            Science as a way of <span className="italic text-cyan">thinking.</span>
+            {t("about.titleBefore")} <span className="italic text-cyan">{t("about.titleAccent")}</span>
           </h1>
           <p className="mt-8 max-w-xl text-[17px] leading-relaxed text-ink/65">
-            NovaLab was started by students at {site.school} in Iași who wanted somewhere to do
-            science, not only study it. It's an alternative educational environment: open,
-            informal and rigorous at the same time.
+            {t("about.intro", { school: site.school })}
           </p>
         </div>
         <div className="lg:col-span-5">
@@ -45,26 +47,18 @@ function About() {
       <section className="bg-indigo text-ink">
         <div className="max-w-7xl mx-auto px-6 py-20 grid lg:grid-cols-12 gap-12">
           <div className="lg:col-span-4">
-            <Eyebrow tone="paper">Why we exist</Eyebrow>
-            <h2 className="mt-6 font-display text-4xl font-medium leading-tight">
-              The curriculum ends. The questions don't.
-            </h2>
+            <Eyebrow tone="paper">{t("about.why")}</Eyebrow>
+            <h2 className="mt-6 font-display text-4xl font-medium leading-tight">{t("about.whyTitle")}</h2>
           </div>
           <div className="lg:col-span-7 lg:col-start-6 space-y-6 text-[17px] leading-relaxed text-ink/70">
             <p>
-              School teaches science as a set of results. We're interested in the part before
-              that: the question, the uncertainty, the argument, the failed attempt, and the
-              second attempt that works.
+              {t("about.whyP1")}
             </p>
             <p>
-              Members explore subjects beyond the syllabus, run their own experiments, defend
-              their reasoning in front of each other, and learn to explain what they found to
-              someone who isn't in the room.
+              {t("about.whyP2")}
             </p>
             <p>
-              Along the way people pick up the things that are hard to teach directly:
-              collaboration, leadership, patience with detail, and the confidence to say "I don't
-              know yet".
+              {t("about.whyP3")}
             </p>
           </div>
         </div>
@@ -73,29 +67,29 @@ function About() {
       <section className="border-b border-ink/10 bg-midnight">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 py-20 md:py-28 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-8">
-            <Eyebrow tone="paper">Our mission</Eyebrow>
+            <Eyebrow tone="paper">{t("about.mission")}</Eyebrow>
             <h2 className="mt-6 max-w-4xl text-4xl font-medium leading-[1.05] tracking-[-0.06em] md:text-6xl">
-              Science is not just something we study. It&apos;s something we{" "}
-              <span className="font-editorial font-normal italic text-cyan">explore together.</span>
+              {t("about.missionTitle")}{" "}
+              <span className="font-editorial font-normal italic text-cyan">{t("about.missionAccent")}</span>
             </h2>
           </div>
           <Link
             to="/team"
             className="inline-flex items-center justify-center bg-cyan px-5 py-3 text-[14px] font-semibold text-paper transition-colors hover:bg-electric lg:justify-self-end"
           >
-            Meet the community <span aria-hidden="true">↗</span>
+            {t("common.meetCommunity")} <span aria-hidden="true">↗</span>
           </Link>
         </div>
       </section>
 
       <section className="max-w-7xl mx-auto px-6 py-20 grid lg:grid-cols-12 gap-12">
-        <SectionHeader className="lg:col-span-4" eyebrow="How it works" title="What a term looks like." />
+        <SectionHeader className="lg:col-span-4" eyebrow={t("about.works")} title={t("about.term")} />
         <ul className="lg:col-span-8 grid sm:grid-cols-2 gap-x-10 gap-y-8">
           {activities.map((a) => (
             <li key={a.title} className="border-t border-ink/15 pt-4">
               <span className="font-mono text-[11px] text-cyan">{a.index}</span>
-              <h3 className="mt-1 font-display text-2xl font-medium tracking-tight">{a.title}</h3>
-              <p className="mt-2 text-[15px] leading-relaxed text-ink/60">{a.text}</p>
+              <h3 className="mt-1 font-display text-2xl font-medium tracking-tight">{contentText(t, a.title)}</h3>
+              <p className="mt-2 text-[15px] leading-relaxed text-ink/60">{contentText(t, a.text)}</p>
             </li>
           ))}
         </ul>
@@ -104,13 +98,13 @@ function About() {
       <section className="bg-midnight">
         <div className="max-w-7xl mx-auto px-6 py-20 text-center">
           <h2 className="font-display text-4xl md:text-5xl font-medium tracking-tight">
-            Curious how you'd fit in?
+            {t("about.curious")}
           </h2>
           <Link
             to="/join"
             className="mt-8 inline-block bg-nova text-ink px-8 py-4 rounded-full text-[15px] font-semibold hover:bg-electric transition-colors"
           >
-            Join NovaLab
+            {t("common.join")}
           </Link>
         </div>
       </section>

@@ -1,4 +1,6 @@
 import type { Project } from "@/content/site";
+import { useTranslation } from "react-i18next";
+import { contentText } from "@/content/translate";
 
 const accentText = {
   cyan: "text-cyan",
@@ -7,6 +9,7 @@ const accentText = {
 } as const;
 
 export function ProjectCard({ project }: { project: Project }) {
+  const { t } = useTranslation();
   return (
     <article className="group flex flex-col overflow-hidden border border-ink/10 bg-midnight transition-colors hover:border-ink/25">
       <img
@@ -22,20 +25,20 @@ export function ProjectCard({ project }: { project: Project }) {
           <span
             className={`text-[10px] font-mono uppercase tracking-[0.15em] ${accentText[project.accent]}`}
           >
-            {project.discipline}
+            {contentText(t, project.discipline)}
           </span>
           <span className="text-[10px] font-mono uppercase tracking-[0.15em] text-ink/40">
-            {project.status}
+            {contentText(t, project.status)}
           </span>
         </div>
         <h3 className="mt-4 font-display text-2xl font-medium leading-snug">
-          {project.title}
+          {contentText(t, project.title)}
         </h3>
         <p className="mt-2 text-sm text-ink/60 leading-relaxed flex-1">
-          {project.description}
+          {contentText(t, project.description)}
         </p>
         <span className="mt-4 text-[11px] font-mono text-ink/40">
-          {project.date} · {project.participants}
+          {contentText(t, project.date)} · {contentText(t, project.participants)}
         </span>
       </div>
     </article>

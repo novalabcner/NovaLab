@@ -1,10 +1,20 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { nav } from "@/content/site";
+import { useTranslation } from "react-i18next";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 import { LogoMark, Wordmark } from "./Logo";
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const { t } = useTranslation();
+  const nav = [
+    { label: t("nav.about"), to: "/about" },
+    { label: t("nav.science"), to: "/science" },
+    { label: t("nav.projects"), to: "/projects" },
+    { label: t("nav.events"), to: "/events" },
+    { label: t("nav.articles"), to: "/articles" },
+    { label: t("nav.contact"), to: "/contact" },
+  ];
 
   return (
     <header className="border-b border-ink/10 bg-paper/90 backdrop-blur-sm sticky top-0 z-50">
@@ -31,20 +41,21 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-3">
+          <LanguageSwitcher />
           <Link
             to="/join"
             className="bg-nova text-ink text-[13px] font-medium px-4 py-2 rounded-full hover:bg-electric transition-colors"
           >
-            Join NovaLab
+            {t("nav.join")}
           </Link>
           <button
             type="button"
             className="md:hidden font-mono text-[11px] uppercase tracking-[0.18em] text-ink/60"
             aria-expanded={open}
-            aria-label="Toggle navigation"
+            aria-label={open ? t("nav.close") : t("nav.menu")}
             onClick={() => setOpen((v) => !v)}
           >
-            {open ? "Close" : "Menu"}
+            {open ? t("nav.close") : t("nav.menu")}
           </button>
         </div>
       </div>

@@ -3,11 +3,14 @@ import { useState } from "react";
 import { Eyebrow } from "@/components/site/SectionHeader";
 import { ProjectCard } from "@/components/site/ProjectCard";
 import { projects } from "@/content/site";
+import { useTranslation } from "react-i18next";
+import { contentText } from "@/content/translate";
+import { i18n } from "@/i18n";
 
 export const Route = createFileRoute("/projects")({
   head: () => ({
     meta: [
-      { title: "Projects — NovaLab" },
+      { title: `${i18n.t("projects.eyebrow")} — NovaLab` },
       {
         name: "description",
         content:
@@ -26,20 +29,19 @@ export const Route = createFileRoute("/projects")({
 const filters = ["All", "Biology", "Chemistry", "Astrophysics"] as const;
 
 function Projects() {
+  const { t } = useTranslation();
   const [filter, setFilter] = useState<string>("All");
   const visible = projects.filter((p) => filter === "All" || p.discipline === filter);
 
   return (
     <>
       <section className="max-w-7xl mx-auto px-6 pt-16 pb-10 md:pt-24">
-        <Eyebrow>Project log</Eyebrow>
+        <Eyebrow>{t("projects.eyebrow")}</Eyebrow>
         <h1 className="mt-6 max-w-3xl font-display text-5xl md:text-7xl font-medium leading-[0.95] tracking-tight">
-          What we tested, and <span className="italic text-cyan">what happened.</span>
+          {t("projects.titleBefore")}<span className="italic text-cyan">{t("projects.titleAccent")}</span>
         </h1>
         <p className="mt-8 max-w-xl text-[17px] leading-relaxed text-ink/65">
-          Every NovaLab project is documented the same way: a question, a method, a team and an
-          honest result. The entries below are sample records showing the format — they will be
-          replaced with real work.
+          {t("projects.intro")}
         </p>
       </section>
 
@@ -47,7 +49,7 @@ function Projects() {
         <div
           className="flex flex-wrap gap-2 border-y border-ink/10 py-4 mb-10"
           role="group"
-          aria-label="Filter projects by discipline"
+          aria-label={t("projects.filterLabel")}
         >
           {filters.map((f) => (
             <button
@@ -61,7 +63,7 @@ function Projects() {
                   : "border border-ink/15 text-ink/55 hover:text-ink"
               }`}
             >
-              {f}
+              {f === "All" ? t("projects.all") : contentText(t, f)}
             </button>
           ))}
         </div>
@@ -74,7 +76,7 @@ function Projects() {
           </div>
         ) : (
           <p className="py-16 text-center font-mono text-[12px] uppercase tracking-[0.18em] text-ink/40">
-            No records in this discipline yet.
+            {t("common.noRecords")}
           </p>
         )}
       </section>

@@ -1,11 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Eyebrow } from "@/components/site/SectionHeader";
 import { partners, site } from "@/content/site";
+import { useTranslation } from "react-i18next";
+import { i18n } from "@/i18n";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact NovaLab — Iași, Romania" },
+      { title: `${i18n.t("contact.eyebrow")} NovaLab — Iași, România` },
       {
         name: "description",
         content:
@@ -22,17 +24,17 @@ export const Route = createFileRoute("/contact")({
 });
 
 function Contact() {
+  const { t } = useTranslation();
   return (
     <>
       <section className="max-w-7xl mx-auto px-6 pt-16 pb-16 md:pt-24 grid lg:grid-cols-12 gap-12">
         <div className="lg:col-span-6">
-          <Eyebrow>Contact</Eyebrow>
+          <Eyebrow>{t("contact.eyebrow")}</Eyebrow>
           <h1 className="mt-6 font-display text-5xl md:text-6xl font-medium leading-[0.98] tracking-tight">
-            Write to us.
+            {t("contact.title")}
           </h1>
           <p className="mt-8 max-w-lg text-[17px] leading-relaxed text-ink/65">
-            Students, teachers, schools and organisations are all welcome to get in touch —
-            whether you want to join, collaborate on a project, or invite us somewhere.
+            {t("contact.intro")}
           </p>
           <a
             href={`mailto:${site.email}`}
@@ -43,15 +45,15 @@ function Contact() {
         </div>
         <address className="lg:col-span-4 lg:col-start-9 not-italic font-mono text-[11px] uppercase tracking-[0.16em] text-ink/55 space-y-6 border-l border-ink/15 pl-8">
           <div>
-            <span className="block text-ink/35">Based at</span>
+            <span className="block text-ink/35">{t("contact.based")}</span>
             <span className="mt-1 block text-ink/80">{site.school}</span>
           </div>
           <div>
-            <span className="block text-ink/35">City</span>
+            <span className="block text-ink/35">{t("contact.city")}</span>
             <span className="mt-1 block text-ink/80">{site.city}</span>
           </div>
           <div>
-            <span className="block text-ink/35">Online</span>
+            <span className="block text-ink/35">{t("contact.online")}</span>
             {site.social.map((s) => (
               <a key={s.label} href={s.href} className="mt-1 block text-ink/80 hover:text-cyan">
                 {s.label}
@@ -64,9 +66,9 @@ function Contact() {
       <section className="bg-indigo text-ink">
         <div className="max-w-7xl mx-auto px-6 py-20 grid lg:grid-cols-12 gap-12">
           <div className="lg:col-span-5">
-            <Eyebrow>Support & collaboration</Eyebrow>
+            <Eyebrow>{t("contact.support")}</Eyebrow>
             <h2 className="mt-6 font-display text-4xl font-medium leading-tight">
-              Partners we haven't met yet.
+              {t("contact.supportTitle")}
             </h2>
           </div>
           <div className="lg:col-span-6 lg:col-start-7">
@@ -83,9 +85,7 @@ function Contact() {
               </ul>
             ) : (
               <p className="text-[17px] leading-relaxed text-ink/70">
-                NovaLab is young and currently unsponsored. If your organisation works in
-                education, research or technology and wants to support student science in Iași —
-                equipment, mentoring, space or funding — we'd like to talk.
+                {t("contact.supportText")}
               </p>
             )}
           </div>

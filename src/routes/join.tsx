@@ -1,11 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Eyebrow } from "@/components/site/SectionHeader";
 import { site } from "@/content/site";
+import { useTranslation } from "react-i18next";
+import { contentText } from "@/content/translate";
+import { i18n } from "@/i18n";
 
 export const Route = createFileRoute("/join")({
   head: () => ({
     meta: [
-      { title: "Join NovaLab — Student science club in Iași" },
+      { title: `${i18n.t("join.eyebrow")} — Club științific în Iași` },
       {
         name: "description",
         content:
@@ -29,53 +32,53 @@ const steps = [
 ];
 
 function Join() {
+  const { t } = useTranslation();
   return (
     <>
       <section className="bg-indigo text-ink">
         <div className="max-w-7xl mx-auto px-6 py-20 md:py-28 grid lg:grid-cols-12 gap-12">
           <div className="lg:col-span-7">
-            <Eyebrow tone="paper">Join NovaLab</Eyebrow>
+            <Eyebrow tone="paper">{t("join.eyebrow")}</Eyebrow>
             <h1 className="mt-6 font-display text-5xl md:text-7xl font-medium leading-[0.95] tracking-tight">
-              Bring a question.
+              {t("join.titleBefore")}
               <br />
-              <span className="italic text-cyan">We'll test it</span> together.
+              <span className="italic text-cyan">{t("join.titleAccent")}</span>{t("join.titleAfter")}
             </h1>
             <p className="mt-8 max-w-lg text-[17px] leading-relaxed text-ink/70">
-              No experience required and no perfect grades expected — just curiosity and the
-              willingness to follow it somewhere uncomfortable.
+              {t("join.intro")}
             </p>
             <a
               href={`mailto:${site.email}?subject=NovaLab%20application`}
               className="mt-10 inline-block bg-nova text-ink px-8 py-4 rounded-full text-[15px] font-semibold hover:bg-electric transition-colors"
             >
-              Apply by email
+              {t("join.apply")}
             </a>
           </div>
           <dl className="lg:col-span-4 lg:col-start-9 border-l border-ink/15 pl-8 space-y-6 font-mono text-[11px] uppercase tracking-[0.16em] text-ink/60">
             <div>
-              <dt className="text-ink/35">Who it's for</dt>
-              <dd className="mt-1 text-ink/85">Students, grades VII–XII</dd>
+              <dt className="text-ink/35">{t("join.who")}</dt>
+              <dd className="mt-1 text-ink/85">{t("join.students")}</dd>
             </div>
             <div>
-              <dt className="text-ink/35">Where</dt>
+              <dt className="text-ink/35">{t("join.where")}</dt>
               <dd className="mt-1 text-ink/85">{site.city}</dd>
             </div>
             <div>
-              <dt className="text-ink/35">How</dt>
-              <dd className="mt-1 text-ink/85">Short message, then a conversation</dd>
+              <dt className="text-ink/35">{t("join.how")}</dt>
+              <dd className="mt-1 text-ink/85">{t("join.howText")}</dd>
             </div>
           </dl>
         </div>
       </section>
 
       <section className="max-w-7xl mx-auto px-6 py-20">
-        <Eyebrow>The path in</Eyebrow>
+        <Eyebrow>{t("join.path")}</Eyebrow>
         <div className="mt-10 grid md:grid-cols-4 gap-8 border-t border-ink/15 pt-8">
           {steps.map((s) => (
             <div key={s.n}>
               <span className="font-mono text-[11px] text-cyan">{s.n}</span>
               <h2 className="mt-1 font-display text-2xl font-medium tracking-tight">{s.title}</h2>
-              <p className="mt-2 text-[15px] leading-relaxed text-ink/60">{s.text}</p>
+              <p className="mt-2 text-[15px] leading-relaxed text-ink/60">{contentText(t, s.text)}</p>
             </div>
           ))}
         </div>
@@ -84,20 +87,20 @@ function Join() {
       <section className="bg-midnight">
         <div className="max-w-7xl mx-auto px-6 py-20 grid lg:grid-cols-12 gap-12">
           <h2 className="lg:col-span-5 font-display text-4xl md:text-5xl font-medium leading-tight tracking-tight">
-            What you'd actually get out of it.
+            {t("join.benefits")}
           </h2>
           <ul className="lg:col-span-6 lg:col-start-7 space-y-6 text-[17px] leading-relaxed text-ink/65">
             <li className="border-t border-ink/15 pt-4">
-              Lab time and equipment for ideas that don't fit into a lesson.
+              {t("join.benefit1")}
             </li>
             <li className="border-t border-ink/15 pt-4">
-              People who will argue with your reasoning and help you fix it.
+              {t("join.benefit2")}
             </li>
             <li className="border-t border-ink/15 pt-4">
-              Practice presenting your work to an audience that isn't your teacher.
+              {t("join.benefit3")}
             </li>
             <li className="border-t border-ink/15 pt-4">
-              A documented project you can point to later.
+              {t("join.benefit4")}
             </li>
           </ul>
         </div>
