@@ -268,7 +268,7 @@ const resources = {
 } as const;
 
 const savedLanguage = typeof window !== "undefined" ? window.localStorage.getItem(languageStorageKey) : null;
-const initialLanguage: Language = savedLanguage === "en" || savedLanguage === "ro" ? savedLanguage : "ro";
+const initialLanguage: Language = savedLanguage === "en" || savedLanguage === "ro" ? savedLanguage : "en";
 
 void i18n.use(initReactI18next).init({
   resources,
